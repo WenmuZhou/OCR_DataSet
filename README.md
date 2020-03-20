@@ -1,7 +1,21 @@
 # Todo
 
 - [ ] 提供数据集百度云链接
-- [ ] 数据集转换为统一格式
+- [ ] 数据集转换为统一格式(检测和识别)
+    - [x] icdar2015
+    - [ ] MLT2019
+    - [ ] COCO-Text_v2
+    - [ ] ReCTS
+    - [ ] SROIE
+    - [ ] ArT	
+    - [ ] LSVT
+    - [ ] Synth800k
+    - [ ] icdar2017rctw
+    - [ ] Synth800k
+    - [ ] MTWI 2018
+    - [ ] 百度中文场景文字识别
+    - [ ] mjsynth
+    - [ ] Synthetic Chinese String Dataset
 - [ ] 提供读取脚本
 
 
