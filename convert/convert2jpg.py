@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/3/21 10:37
 # @Author  : zhoujun
+"""
+用于将图片统一转换为jpg
+"""
 import os
 import pathlib
 from tqdm import tqdm

@@ -4,7 +4,7 @@
 - [ ] 数据集转换为统一格式(检测和识别)
     - [x] icdar2015
     - [x] MLT2019
-    - [ ] COCO-Text_v2
+    - [x] COCO-Text_v2
     - [ ] ReCTS
     - [ ] SROIE
     - [ ] ArT	

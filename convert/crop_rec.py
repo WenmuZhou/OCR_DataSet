@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/3/20 20:55
 # @Author  : zhoujun
+"""
+根据生成的json文件 裁剪出识别训练数据
+"""
 import os
 import cv2
 import shutil
@@ -63,8 +66,8 @@ def four_point_transform(image, pts):
 
 
 if __name__ == '__main__':
-    json_path = r'D:\dataset\mlt2019\detection\gt.json'
-    save_path = r'D:\dataset\mlt2019\recognition\train'
+    json_path = r'D:\dataset\COCO_Text\detection\train.json'
+    save_path = r'D:\dataset\COCO_Text\recognition\train'
     gt_path = pathlib.Path(save_path).parent / 'train.txt'
     if os.path.exists(save_path):
         shutil.rmtree(save_path, ignore_errors=True)

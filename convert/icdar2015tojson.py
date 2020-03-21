@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/3/18 14:12
 # @Author  : zhoujun
-import glob
+"""
+将icdar2015数据集转换为统一格式
+"""
 import pathlib
 from tqdm import tqdm
 from convert.utils import load, save, get_file_list

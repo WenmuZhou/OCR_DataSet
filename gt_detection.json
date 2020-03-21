@@ -25,6 +25,7 @@
           ],
           "text": "label",
           "illegibility":false,
+          "language":"Latin",
           "chars": [
             {
               "polygon": [
@@ -46,7 +47,8 @@
                 ]
               ],
               "char": "c",
-              "illegibility": false
+              "illegibility": false,
+              "language":"Latin"
             }
           ]
         }
