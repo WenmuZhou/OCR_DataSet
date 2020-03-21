@@ -112,17 +112,21 @@ def load_gt(json_path):
         polygons = []
         texts = []
         illegibility_list = []
+        language_list = []
         for annotation in gt['annotations']:
             if len(annotation['polygon']) == 0 or len(annotation['text']) == 0:
                 continue
             polygons.append(annotation['polygon'])
             texts.append(annotation['text'])
             illegibility_list.append(annotation['illegibility'])
+            language_list.append(annotation['language'])
             for char_annotation in annotation['chars']:
                 if len(char_annotation['polygon']) == 0 or len(char_annotation['char']) == 0:
                     continue
                 polygons.append(char_annotation['polygon'])
                 texts.append(char_annotation['char'])
                 illegibility_list.append(char_annotation['illegibility'])
-        d[img_path] = {'polygons': polygons, 'texts': texts, 'illegibility_list': illegibility_list}
+                language_list.append(char_annotation['language_'])
+        d[img_path] = {'polygons': polygons, 'texts': texts, 'illegibility_list': illegibility_list,
+                       'language_list': language_list}
     return d

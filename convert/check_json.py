@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 from convert.utils import show_bbox_on_image, load_gt
 
 if __name__ == '__main__':
-    json_path = r'D:\dataset\icdar2015\detection\test\test.json'
+    json_path = r'D:\dataset\mlt2019\detection\gt.json'
     data = load_gt(json_path)
     for img_path, gt in data.items():
         img = Image.open(img_path)
