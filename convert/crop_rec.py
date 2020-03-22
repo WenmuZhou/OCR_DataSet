@@ -66,8 +66,8 @@ def four_point_transform(image, pts):
 
 
 if __name__ == '__main__':
-    json_path = r'D:\dataset\COCO_Text\detection\train.json'
-    save_path = r'D:\dataset\COCO_Text\recognition\train'
+    json_path = r'D:\dataset\ReCTS\detection\train.json'
+    save_path = r'D:\dataset\ReCTS\recognition\train'
     gt_path = pathlib.Path(save_path).parent / 'train.txt'
     if os.path.exists(save_path):
         shutil.rmtree(save_path, ignore_errors=True)
@@ -79,7 +79,7 @@ if __name__ == '__main__':
         img_name = pathlib.Path(img_path).stem
         for i, (polygon, text, illegibility, language) in enumerate(
                 zip(gt['polygons'], gt['texts'], gt['illegibility_list'], gt['language_list'])):
-            if illegibility:
+            if illegibility or '###' in text or '*' in text:
                 continue
             polygon = np.array(polygon)
             roi_img_save_path = os.path.join(save_path, '{}_{}.jpg'.format(img_name, i))

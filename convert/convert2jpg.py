@@ -14,4 +14,5 @@ if __name__ == '__main__':
     for img_path in tqdm(get_file_list(img_folder, p_postfix=['.*'])):
         img_path = pathlib.Path(img_path)
         save_path = img_path.parent / (img_path.stem + '.jpg')
-        os.rename(img_path, save_path)
+        if img_path != save_path:
+            os.rename(img_path, save_path)

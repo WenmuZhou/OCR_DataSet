@@ -126,7 +126,7 @@ def load_gt(json_path):
                 polygons.append(char_annotation['polygon'])
                 texts.append(char_annotation['char'])
                 illegibility_list.append(char_annotation['illegibility'])
-                language_list.append(char_annotation['language_'])
+                language_list.append(char_annotation['language'])
         d[img_path] = {'polygons': polygons, 'texts': texts, 'illegibility_list': illegibility_list,
                        'language_list': language_list}
     return d

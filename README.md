@@ -5,7 +5,7 @@
     - [x] icdar2015
     - [x] MLT2019
     - [x] COCO-Text_v2
-    - [ ] ReCTS
+    - [x] ReCTS
     - [ ] SROIE
     - [ ] ArT	
     - [ ] LSVT
