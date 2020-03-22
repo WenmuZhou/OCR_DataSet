@@ -2,9 +2,8 @@
 # @Time    : 2020/3/18 14:12
 # @Author  : zhoujun
 """
-将mlt2019数据集转换为统一格式
+将icdar2015数据集转换为统一格式
 """
-import glob
 import pathlib
 from tqdm import tqdm
 from convert.utils import load, save, get_file_list
@@ -29,9 +28,8 @@ def cvt(gt_path, save_path, img_folder):
             chars_gt = [{'polygon': [], 'char': '', 'illegibility': False, 'language': 'Latin'}]
             cur_line_gt['chars'] = chars_gt
             line = line.split(',')
-            lang = line[8]
-            cur_line_gt['language'] = lang
-            chars_gt[0]['language'] = lang
+            if len(line) < 9:
+                continue
             # 字符串级别的信息
             x1, y1, x2, y2, x3, y3, x4, y4 = list(map(float, line[:8]))
             cur_line_gt['polygon'] = [[x1, y1], [x2, y2], [x3, y3], [x4, y4]]
@@ -44,7 +42,7 @@ def cvt(gt_path, save_path, img_folder):
 
 
 if __name__ == '__main__':
-    gt_path = r'D:\dataset\mlt2019\detection\gt'
-    img_folder = r'D:\dataset\mlt2019\detection\imgs'
-    save_path = r'D:\dataset\mlt2019\detection\gt.json'
+    gt_path = r'D:\dataset\SROIE2019\detection\test\gt'
+    img_folder = r'D:\dataset\SROIE2019\detection\test\imgs'
+    save_path = r'D:\dataset\SROIE2019\detection\test.json'
     cvt(gt_path, save_path, img_folder)

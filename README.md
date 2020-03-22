@@ -6,9 +6,9 @@
     - [x] MLT2019
     - [x] COCO-Text_v2
     - [x] ReCTS
-    - [ ] SROIE
-    - [ ] ArT	
-    - [ ] LSVT
+    - [x] SROIE
+    - [x] ArT	
+    - [x] LSVT
     - [ ] Synth800k
     - [ ] icdar2017rctw
     - [ ] Synth800k

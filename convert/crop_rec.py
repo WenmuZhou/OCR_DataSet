@@ -65,10 +65,7 @@ def four_point_transform(image, pts):
     return warped
 
 
-if __name__ == '__main__':
-    json_path = r'D:\dataset\ReCTS\detection\train.json'
-    save_path = r'D:\dataset\ReCTS\recognition\train'
-    gt_path = pathlib.Path(save_path).parent / 'train.txt'
+def crop(save_gt_path, json_path, save_path):
     if os.path.exists(save_path):
         shutil.rmtree(save_path, ignore_errors=True)
     os.makedirs(save_path, exist_ok=True)
@@ -79,7 +76,7 @@ if __name__ == '__main__':
         img_name = pathlib.Path(img_path).stem
         for i, (polygon, text, illegibility, language) in enumerate(
                 zip(gt['polygons'], gt['texts'], gt['illegibility_list'], gt['language_list'])):
-            if illegibility or '###' in text or '*' in text:
+            if illegibility:
                 continue
             polygon = np.array(polygon)
             roi_img_save_path = os.path.join(save_path, '{}_{}.jpg'.format(img_name, i))
@@ -99,4 +96,11 @@ if __name__ == '__main__':
             # plt.title(text)
             # plt.imshow(roi_img)
             # plt.show()
-    save(file_list, gt_path)
+    save(file_list, save_gt_path)
+
+
+if __name__ == '__main__':
+    json_path = r'D:\dataset\LSVT\detection\train.json'
+    save_path = r'D:\dataset\LSVT\recognition\train'
+    gt_path = pathlib.Path(save_path).parent / 'train.txt'
+    crop(gt_path, json_path, save_path)

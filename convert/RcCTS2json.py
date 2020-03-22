@@ -16,7 +16,7 @@ def decode_chars(char_list):
     text_list = []
     for char_dict in char_list:
         polygon_list.append(np.array(char_dict['points']).reshape(-1, 2).tolist())
-        illegibility_list.append(char_dict['ignore'])
+        illegibility_list.append(True if char_dict['ignore'] == 1 else False)
         text_list.append(char_dict['transcription'])
     return polygon_list, illegibility_list, text_list
 
