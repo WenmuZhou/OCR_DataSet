@@ -6,7 +6,6 @@ import json
 import os
 import glob
 import pathlib
-import numpy as np
 from natsort import natsorted
 
 __all__ = ['load']
@@ -31,7 +30,7 @@ def get_file_list(folder_path: str, p_postfix: list = None) -> list:
 
 def load(file_path: str):
     file_path = pathlib.Path(file_path)
-    func_dict = {'.txt': load_txt, '.json': load_json}
+    func_dict = {'.txt': load_txt, '.json': load_json, '.list': load_txt}
     assert file_path.suffix in func_dict
     return func_dict[file_path.suffix](file_path)
 

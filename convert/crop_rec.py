@@ -6,6 +6,7 @@
 """
 import os
 import cv2
+import math
 import shutil
 import pathlib
 import numpy as np
@@ -36,7 +37,7 @@ def order_points(pts):
 
 def four_point_transform(image, pts):
     # 获取坐标点，并将它们分离开来
-    rect = order_points(pts)
+    rect = original_coordinate_transformation(pts)
     (tl, tr, br, bl) = rect
 
     # 计算新图片的宽度值，选取水平差值的最大值
@@ -63,6 +64,30 @@ def four_point_transform(image, pts):
 
     # 返回变换后的结果
     return warped
+
+
+def original_coordinate_transformation(polygon):
+    """
+    调整坐标顺序为：
+      x1,y1    x2,y2
+      x4,y4    x3,y3
+    :param polygon:
+    :return:
+    """
+    x1, y1, x2, y2, x3, y3, x4, y4 = polygon.astype(float).reshape(-1)
+    # 判断x1和x3大小，x3调整为大的数
+    if x1 > x3:
+        x1, y1, x3, y3 = x3, y3, x1, y1
+    # 判断x2和x4大小，x4调整为大的数
+    if x2 > x4:
+        x2, y2, x4, y4 = x4, y4, x2, y2
+    # 判断y1和y2大小，y1调整为大的数
+    if y2 > y1:
+        x2, y2, x1, y1 = x1, y1, x2, y2
+    # 判断y3和y4大小，y4调整为大的数
+    if y3 > y4:
+        x3, y3, x4, y4 = x4, y4, x3, y3
+    return np.array([[x2, y2], [x3, y3], [x4, y4], [x1, y1]], dtype=np.float32)
 
 
 def crop(save_gt_path, json_path, save_path):
@@ -100,7 +125,7 @@ def crop(save_gt_path, json_path, save_path):
 
 
 if __name__ == '__main__':
-    json_path = r'D:\dataset\LSVT\detection\train.json'
-    save_path = r'D:\dataset\LSVT\recognition\train'
+    json_path = r'D:\dataset\icdar2017rctw\detection\train.json'
+    save_path = r'D:\dataset\icdar2017rctw\recognition\train'
     gt_path = pathlib.Path(save_path).parent / 'train.txt'
     crop(gt_path, json_path, save_path)

@@ -7,8 +7,8 @@
 import os
 import numpy as np
 from tqdm import tqdm
-from convert.utils import load, save
-from convert.coco_text import COCO_Text
+from convert.utils import save
+from convert.det.coco_text import COCO_Text
 
 def cvt(gt_path, save_path, imgs_folder):
     gt_dict = {'data_root': imgs_folder}
