@@ -2,12 +2,15 @@
 # @Time    : 2020/3/24 11:36
 # @Author  : zhoujun
 import os
+import sys
+
+project = 'OCR_DataSet'  # 工作项目根目录
+sys.path.append(os.getcwd().split(project)[0] + project)
 import numpy as np
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 
 from convert.utils import load, show_bbox_on_image
-
 
 class DetDataSet(Dataset):
     def __init__(self, json_path, transform=None, target_transform=None):
@@ -43,9 +46,9 @@ class DetDataSet(Dataset):
                     texts.append(char_annotation['char'])
                     illegibility_list.append(char_annotation['illegibility'])
                     language_list.append(char_annotation['language'])
-            d.append({'img_path': img_path, 'polygons': polygons, 'texts': texts,
-                      'illegibility_list': illegibility_list,
-                      'language_list': language_list})
+            d.append({'img_path': img_path, 'polygons': np.array(polygons), 'texts': texts,
+                      'illegibility': illegibility_list,
+                      'language': language_list})
         return d
 
     def __getitem__(self, item):
@@ -53,12 +56,12 @@ class DetDataSet(Dataset):
             item_dict = self.data_list[item]
             item_dict['img'] = Image.open(item_dict['img_path']).convert('RGB')
             item_dict['img'] = self.pre_processing(item_dict)
-            item_dict['label'] = self.make_label(item_dict)
+            item_dict['texts'] = self.make_label(item_dict)
             # 进行标签制作
             if self.transform:
                 item_dict['img'] = self.transform(item_dict['img'])
             if self.target_transform:
-                item_dict['label'] = self.target_transform(item_dict['label'])
+                item_dict['texts'] = self.target_transform(item_dict['texts'])
             return item_dict
         except:
             return self.__getitem__(np.random.randint(self.__len__()))
@@ -74,6 +77,7 @@ class DetDataSet(Dataset):
 
 
 if __name__ == '__main__':
+    import time
     from tqdm import tqdm
     from torchvision import transforms
     from matplotlib import pyplot as plt
@@ -82,17 +86,20 @@ if __name__ == '__main__':
     plt.rcParams['font.sans-serif'] = ['SimHei']  # 用来正常显示中文标签
     plt.rcParams['axes.unicode_minus'] = False  # 用来正常显示负号
 
-    json_path = r'D:\dataset\icdar2017rctw\detection\train.json'
+    json_path = r'E:\\zj\\dataset\\icdar2015 (2)\\detection\\test.json'
 
     dataset = DetDataSet(json_path, transform=transforms.ToTensor())
-    train_loader = DataLoader(dataset=dataset, batch_size=1, shuffle=True, num_workers=0)
+    train_loader = DataLoader(dataset=dataset, batch_size=1, shuffle=True, num_workers=6)
     pbar = tqdm(total=len(train_loader))
+    tic = time.time()
     for i, data in enumerate(train_loader):
-        img = data['img'][0].numpy().transpose(1, 2, 0) * 255
-        label = [x[0] for x in data['label']]
+        pass
+        # img = data['img'][0].numpy().transpose(1, 2, 0) * 255
+        # texts = [x[0] for x in data['texts']]
 
-        img = show_bbox_on_image(Image.fromarray(img.astype(np.uint8)), data['polygons'], label)
-        plt.imshow(img)
-        plt.show()
-        pbar.update(1)
-    pbar.close()
+        # img = show_bbox_on_image(Image.fromarray(img.astype(np.uint8)), data['polygons'][0], label)
+        # plt.imshow(img)
+        # plt.show()
+        # pbar.update(1)
+    # pbar.close()
+    print(len(train_loader)/(time.time()-tic))
