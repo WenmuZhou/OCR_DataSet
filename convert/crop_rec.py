@@ -97,7 +97,9 @@ def crop(save_gt_path, json_path, save_path):
     data = load_gt(json_path)
     file_list = []
     for img_path, gt in tqdm(data.items()):
-        img = Image.open(img_path).convert('RGB')
+        img = cv2.imread(img_path)
+        np_img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+        img = Image.fromarray(np_img)
         img_name = pathlib.Path(img_path).stem
         for i, (polygon, text, illegibility, language) in enumerate(
                 zip(gt['polygons'], gt['texts'], gt['illegibility_list'], gt['language_list'])):
@@ -107,7 +109,6 @@ def crop(save_gt_path, json_path, save_path):
             roi_img_save_path = os.path.join(save_path, '{}_{}.jpg'.format(img_name, i))
             # 对于只有四个点的图片，反射变换后存储
             if len(polygon) == 4:
-                np_img = np.asarray(img)
                 roi_img = four_point_transform(np_img, polygon)
                 roi_img = Image.fromarray(roi_img).convert('RGB')
             else:
