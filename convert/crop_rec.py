@@ -98,7 +98,7 @@ def crop(save_gt_path, json_path, save_path):
     file_list = []
     for img_path, gt in tqdm(data.items()):
         img = cv2.imread(img_path)
-        np_img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+        np_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = Image.fromarray(np_img)
         img_name = pathlib.Path(img_path).stem
         for i, (polygon, text, illegibility, language) in enumerate(
@@ -118,7 +118,8 @@ def crop(save_gt_path, json_path, save_path):
                 y_max = polygon[:, 1].max()
                 roi_img = img.crop((x_min, y_min, x_max, y_max))
             roi_img.save(roi_img_save_path)
-            file_list.append(roi_img_save_path + '\t' + text + '\t' + language)
+            roi_w, roi_h = roi_img.size
+            file_list.append('{}\t{}\t{}\t{}\t{}'.format(roi_img_save_path, text, roi_w, roi_h, language))
             # plt.title(text)
             # plt.imshow(roi_img)
             # plt.show()
