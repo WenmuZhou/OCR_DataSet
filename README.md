@@ -18,7 +18,7 @@
 - [x] 提供读取脚本
 
 # 下载
-
+下载数据集之后，记得修改标注文件里对应的路径为自己的路径
 [百度云](https://pan.baidu.com/s/1mRepVEvMa-U4e9ThiskVXg) 提取码：9s4x 
 # 数据集
 
