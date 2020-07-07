@@ -15,6 +15,8 @@
     - [x] 百度中文场景文字识别
     - [x] mjsynth
     - [x] Synthetic Chinese String Dataset(360万中文数据集)
+    - [x] 英文识别数据大礼包
+    - [x] 科大讯飞自然场景文字检测挑战赛
 - [x] 提供读取脚本
 
 # 下载
