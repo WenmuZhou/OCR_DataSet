@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/3/20 19:54
 # @Author  : zhoujun
-import cv2
 import json
 import os
 import glob
 import pathlib
 from natsort import natsorted
 
-__all__ = ['load']
+__all__ = ['load', 'save', 'get_file_list', 'show_bbox_on_image', 'load_gt']
 
 
 def get_file_list(folder_path: str, p_postfix: list = None) -> list:
@@ -85,6 +84,8 @@ def show_bbox_on_image(image, polygons=None, txt=None, color=None, font_path='co
     from PIL import ImageDraw, ImageFont
     image = image.convert('RGB')
     draw = ImageDraw.Draw(image)
+    if len(txt) == 0:
+        txt = None
     if color is None:
         color = (255, 0, 0)
     if txt is not None:
@@ -113,7 +114,7 @@ def load_gt(json_path):
         illegibility_list = []
         language_list = []
         for annotation in gt['annotations']:
-            if len(annotation['polygon']) == 0 or len(annotation['text']) == 0:
+            if len(annotation['polygon']) == 0:
                 continue
             polygons.append(annotation['polygon'])
             texts.append(annotation['text'])
