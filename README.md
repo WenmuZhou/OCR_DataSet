@@ -16,7 +16,6 @@
     - [x] mjsynth
     - [x] Synthetic Chinese String Dataset(360万中文数据集)
     - [x] 英文识别数据大礼包
-    - [x] 科大讯飞自然场景文字检测挑战赛
 - [x] 提供读取脚本
 
 # 下载
@@ -40,7 +39,6 @@
 | mjsynth                             | http://www.robots.ox.ac.uk/~vgg/data/text/                   | 识别      | 语言: 英文     9,000,000                                     | -                                                            | -                                                            |
 | Synthetic Chinese String  Dataset(360万中文数据集)   | 链接：https://pan.baidu.com/s/1jefn4Jh4jHjQdiWoanjKpQ 提取码：spyi | 识别      | 语言: 混合     300k                                          | -                                                            | -                                                            |
 | 英文识别数据大礼包(https://github.com/clovaai/deep-text-recognition-benchmark) 训练：MJSynth和SynthText  验证：IIIT, SVT, IC03, IC13, IC15, SVTP, CUTE   | 链接：https://pan.baidu.com/s/1KSNLv4EY3zFWHpBYlpFCBQ 提取码：rryk | 识别      | 语言: 英文                                              | -                                                            | -                                                            |
-| 科大讯飞自然场景文字检测挑战赛   | http://challenge.xfyun.cn/topic/info?type=text-detect | 检测      | 语言: 混合                  训练: 5000    验证: 1000                             | {     “gt_1”: [  {“points”: [[x1, y1], [x2, y2], …, [xn,  yn]], "illegibility": false }     | -                                                            | points: x1,y1,x2,y2,x3,y3,x4,y4…xn,yn illegibility: 是否模糊
 
 # 数据生成工具
                                                     
