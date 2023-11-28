@@ -20,7 +20,12 @@
 
 # 下载
 下载数据集之后，记得修改标注文件里对应的路径为自己的路径
-[百度云](https://pan.baidu.com/s/1mRepVEvMa-U4e9ThiskVXg) 提取码：9s4x 
+
+通过百度网盘分享的文件：每个数据集分开
+链接:https://pan.baidu.com/s/1q9PoR6ObWxqFY8h-3W-ZUQ?pwd=zak1 
+提取码:zak1
+复制这段内容打开「百度网盘APP 即可获取」
+
 # 数据集
 
 | 数据集                              | 主页                                                         | 适用情况  | 数据情况                                                     | 标注形式                                                     | 说明                                                         |
