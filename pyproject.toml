@@ -1,0 +1,88 @@
+[tool.poetry]
+name = "ocr-dataset-tools"
+version = "0.1.0"
+description = "OCR dataset conversion and loading utilities"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [
+    { include = "convert" },
+    { include = "dataset" }
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+torch = "^2.0.0"
+torchvision = "^0.15.0"
+opencv-python = "^4.8.0"
+pillow = "^10.0.0"
+numpy = "^1.24.0"
+shapely = "^2.0.0"
+lmdb = "^1.4.0"
+tqdm = "^4.65.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.11.0"
+
+[tool.poetry.scripts]
+test = "pytest:main"
+tests = "pytest:main"
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--verbose",
+    "-ra",
+    "--cov=convert",
+    "--cov=dataset",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-report=term-missing",
+    "--cov-fail-under=0",  # Set to 80 when actual tests are written
+]
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests",
+    "slow: Slow running tests",
+]
+
+[tool.coverage.run]
+source = ["convert", "dataset"]
+omit = [
+    "*/tests/*",
+    "*/__init__.py",
+    "*/conftest.py",
+    "*/setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+precision = 2
+show_missing = true
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
